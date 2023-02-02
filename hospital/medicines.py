@@ -20,9 +20,11 @@ def add_medicines(request):
                                            medicinesPrice=medicineprice, medicinesQuantity=medicinequantity)
                 mediciens_data.save()
                 messages.success(request, 'Medicines Add Sucessfully')
+                return render(request, 'Medicines/add_medicine.html')
+
             except:
                 messages.error(request, 'Medicines Allrady Added')
-            return render(request, 'base.html')
+            return render(request, 'Medicines/add_medicine.html')
         contax = {
             'data_illness': data_illness
         }

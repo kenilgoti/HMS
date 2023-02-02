@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'management.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'hospital',
 #         'USER': 'postgres',
-#         'PASSWORD': 'yash123',
-#         'HOST': 'localhost',
+#         'PASSWORD': 'root',
+#         'HOST': '127.0.0.1',
 #         'PORT': '5432',
 #     }
 # }

@@ -39,7 +39,15 @@
                                 <option value="{{i_illness.lillne_name}}" {% if i_illness.lillne_id == staff_data.lillness.lillne_id %}selected{% endif %}>{{i_illness.lillne_name}}</option>
                             {% endfor %}
                         </select>
-                    </div> 
+                    </div>
+                    <div class="d-flex  flex-column w-50">
+                        <label>Select Category :</label>
+                        <select name="staff_category" required>
+                            <option value="" disabled selected>Select your Category</option>
+                            <option>Nurse</option>
+                            <option>Compounder</option>
+                        </select>
+                    </div>
                 </div>                
                 <div class="row">
                     {% if staff_data %}

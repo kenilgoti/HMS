@@ -20,8 +20,8 @@ def addlillnes(request):
             lillne_name = request.POST['lillne']
             data_lillnes = Lillnes(lillne_name=lillne_name)
             data_lillnes.save()
-            messages.success(request, 'Insert Sucessfully')
-            return render(request, 'base.html')
+            messages.success(request, 'Illness Insert Sucessfully')
+            return render(request, 'addlillnes.html')
         return render(request, 'addlillnes.html')
     return HttpResponseNotFound('Page Not Found')
 

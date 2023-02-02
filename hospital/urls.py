@@ -5,9 +5,6 @@ from . import doctor,lillnes,staff,pations,rooms,medicines
 urlpatterns = [
     # home for Login
     path('',views.index,name='index'),
-    path('doctor_login/',views.doctor_login,name='doctor_login'),
-    path('staff_login/',views.staff_login,name='staff_login'),
-    path('pationt_login/',views.pationt_login,name='pationt_login'),
     path('login/',views.user_login,name='Login'),
     path('logout/',views.user_logout,name='logout'),
 

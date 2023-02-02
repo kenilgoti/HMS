@@ -27,6 +27,8 @@ class User(AbstractUser):
     doctor_id = models.IntegerField(db_column="Doctor_Id",blank=True,null=True)
     staff_id = models.IntegerField(db_column="Staff_Id",blank=True,null=True)
     check_out_status = models.CharField(db_column="Check_Out",default=False,max_length=255)
+    doctor_category = models.CharField(db_column="D_Category",default="Mbbs",blank=False,max_length=255)
+    staff_category = models.CharField(db_column="S_Category", default="Compounder", blank=False, max_length=255)
     user_bed = models.IntegerField(db_column="Bed_Id",blank=True,null=True)
     user_bills = models.IntegerField(db_column='Total_Bills',blank=True,null=True)
 

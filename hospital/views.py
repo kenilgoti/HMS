@@ -33,16 +33,6 @@ def user_login(request):
             return render(request,'login.html')
     return render(request,'login.html')
 
-def doctor_login(request):
-       return render(request,'login_doctor.html')
-   
-def staff_login(request):
-       return render(request,'login_staff.html')
-   
-def pationt_login(request):
-       return render(request,'login_pationt.html')
-   
-
 def user_logout(request):
     logout(request)
     messages.success(request,"Logout Sucess!")

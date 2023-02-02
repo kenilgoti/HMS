@@ -35,6 +35,7 @@ def adddoctor(request):
             user_data.img = request.FILES['img']
             user_data.category = request.POST['category']
             selected_illness_name = request.POST['lillness']
+            user_data.doctor_category = request.POST['doctor_category']
             user_data.is_staff = True
             for i_illnes in data_illness:
                 if i_illnes.lillne_name == selected_illness_name:
