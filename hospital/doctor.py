@@ -34,15 +34,13 @@ def adddoctor(request):
             user_data.fess = request.POST['fess']
             user_data.img = request.FILES['img']
             user_data.category = request.POST['category']
-            selected_illness_name = request.POST['lillness']
+
             user_data.doctor_category = request.POST['doctor_category']
             user_data.is_staff = True
-            for i_illnes in data_illness:
-                if i_illnes.lillne_name == selected_illness_name:
-                    user_data.lillness = i_illnes
-                    user_data.save()
-            messages.success(request, 'Insert Sucessfully')
-            return render(request, 'base.html')
+
+            user_data.save()
+            messages.success(request, '')
+            return redirect('view-doctor')
         return render(request, 'adddoctor.html', {'data': data_illness})
     return HttpResponseNotFound('Page Not Found')
 
@@ -59,7 +57,6 @@ def viewdoctor(request):
 def update(request, id):
     if request.user.is_superuser == True:
         doc_data = User.objects.get(id=id)
-        data_illness = Lillnes.objects.all()
         if 'update_doctor' in request.POST:
             if len(request.FILES) != 0:
                 if len(doc_data.img) > 0:
@@ -71,17 +68,14 @@ def update(request, id):
             doc_data.email = request.POST['email']
             doc_data.phone = request.POST['phone']
             doc_data.fess = request.POST['fess']
-            selected_illness_name = request.POST['lillness']
             doc_data.is_active = request.POST['block']
-            for i_illnes in data_illness:
-                if i_illnes.lillne_name == selected_illness_name:
-                    doc_data.lillness = i_illnes
-                    doc_data.save()
-            messages.success(request, 'Update Sucessfully')
-            return render(request, 'base.html')
+            doc_data.doctor_category = request.POST['doctor_category']
+
+            doc_data.save()
+            messages.success(request, '')
+            return redirect('view-doctor')
         contex = {
             'doc_data': doc_data,
-            'data': data_illness
         }
         return render(request, 'adddoctor.html', contex)
     return HttpResponseNotFound('Page Not Found')
@@ -91,8 +85,8 @@ def update(request, id):
 def delete(request, id):
     if request.user.is_superuser == True:
         User.objects.get(id=id).delete()
-        messages.success(request, 'Delete Sucessfully')
-        return render(request, 'base.html')
+        messages.success(request, '')
+        return redirect('view-doctor')
     return HttpResponseNotFound('Page Not Found')
 
 

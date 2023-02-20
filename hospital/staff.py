@@ -30,14 +30,12 @@ def addstaff(request):
             user_data.img=request.FILES['img']
             user_data.fess=request.POST['fess']
             user_data.category=request.POST['category']
-            selected_illness_name = request.POST['lillness']
+
             user_data.is_staff = True
-            for i_illnes in data_illness:
-                if i_illnes.lillne_name == selected_illness_name:
-                    user_data.lillness=i_illnes
-                    user_data.save()
-            messages.success(request,'Insert Sucessfully')
-            return render(request,'base.html')
+
+            user_data.save()
+            messages.success(request,'')
+            return redirect("view-staff")
         return render(request,'addstaff.html',{'data':data_illness})
     return HttpResponseNotFound('Page Not Found')
 
@@ -64,15 +62,13 @@ def update(request,id):
             staff_data.last_name=request.POST['lname']
             staff_data.email=request.POST['email']
             staff_data.phone=request.POST['phone']
-            selected_illness_name = request.POST['lillness']        
             staff_data.is_active = request.POST['block']
             staff_data.fess = request.POST['fess']
-            for i_illnes in data_illness:
-                if i_illnes.lillne_name == selected_illness_name:
-                    staff_data.lillness=i_illnes
-                    staff_data.save()
-            messages.success(request,'Update Sucessfully')
-            return render(request,'base.html')
+            staff_data.staff_category = request.POST['staff_category']
+
+            staff_data.save()
+            messages.success(request,'')
+            return redirect('view-staff')
         contex={
             'staff_data':staff_data,
             'data':data_illness

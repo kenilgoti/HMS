@@ -43,8 +43,8 @@ def add_pations(request):
                 if i_illnes.lillne_name == selected_illness_name:
                     user_data.lillness = i_illnes
                     user_data.save()
-            messages.success(request, 'Add Pation Sucess')
-            return render(request, 'base.html')
+            messages.success(request, '')
+            return redirect('view-pations')
         return render(request, 'add_pations.html', {'data': data_illness})
     return HttpResponseNotFound('Page Not Found')
 
@@ -79,8 +79,8 @@ def update(request, id):
                 if i_illnes.lillne_name == selected_illness_name:
                     pation_data.lillness = i_illnes
                     pation_data.save()
-            messages.success(request, 'Update Sucessfully')
-            return render(request, 'base.html')
+            messages.success(request, '')
+            return redirect('view-pations')
         contex = {
             'pation_data': pation_data,
             'data': data_illness

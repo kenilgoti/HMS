@@ -23,10 +23,10 @@
           <li class="navbar-dropdown">
             <a href="#">Add</a>
             <div class="dropdown">
-                <a href="/addlillnes/">Add Lillness</a>
+                <a href="/addlillnes/">Add Illness</a>
                 <a href="/add_medicine/">Add Medicines</a>
                 <a href="/adddoctor/">Add Doctor</a>
-                <a href="/add-pations/">Add Pations</a>
+                <a href="/add-pations/">Add Patient</a>
                 <a href="/addstaff/">Add Staff</a>
                 <a href="/add_Room/">Add Room & Bed</a>
             </div>
@@ -35,10 +35,10 @@
           <li class="navbar-dropdown">
             <a href="#">View</a>
             <div class="dropdown">
-                <a href="/viewlillnes/">View Lillness</a>
+                <a href="/viewlillnes/">View Illness</a>
                 <a href="/view_medicine/">View Medicines</a>
                 <a href="/viewdoctor/">View Doctor</a>
-                <a href="/view-pations/">View Pations</a>
+                <a href="/view-pations/">View Patients</a>
                 <a href="/viewstaff/">View Staff</a>
                 <a href="/view_add_Room/">view Room & Bed</a>
                 <a href="/view_check_out/">view Checkout Details</a>
@@ -62,7 +62,35 @@
                 <li {% if message.tags %} class="rounded bg-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{%endif%} font-weight-bold m-4 p-3 "{% endif %}><b>{{ message }}</b></li>
                 {% endfor %}
             </ul>
-        {% endif %}
+       {% endif %}
+
+       {% comment %} #alert box  with popups{% endcomment %}
+        {% comment %} {% if messages %}
+        {% for message in messages %}
+        
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body ">
+                  
+                    <b>{{ message.tags }}</b>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Save </button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %} {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" ></script>
     <script>
         $(document).ready(function () {

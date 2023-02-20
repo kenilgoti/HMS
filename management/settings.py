@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+# import re
+
+# DISALLOWED_USER_AGENTS = [
+#         re.compile(r'^NaverBot.*'),
+#         re.compile(r'^EmailSiphon.*'),
+#         re.compile(r'^SiteSucker.*'),
+#         re.compile(r'^sohu-search'),
+#     ]
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,14 +31,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ak6dbt_ttg=^5!jghys(tbf4t(ii&jp&(7a*=(4fr35q6r45vv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
 
+APPEND_SLASH = True
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

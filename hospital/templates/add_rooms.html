@@ -68,10 +68,18 @@
                 <div class="form-body">
                     <div class="row">
                         <input type="hidden" name="category" value="D">
-                        <div class="d-flex  flex-column w-100 my-3">
-                            <label>Enter Room Type</label>
-                            <input type="text" name="type"  placeholder="Enter Type"  value="{% if room_update_data %}{{room_update_data.roomType}}{% endif %}" required >
-                        </div>
+                        <div class="d-flex  flex-column w-50">
+                        <label>Room Type :</label>
+                        <select name="room_type" required>
+                            <option value="" disabled selected>Select</option>
+                            <option>General</option>
+                            <option>Ac</option>
+                            <option>Non-Ac</option>
+                            <option>Delux</option>
+                            <option>single</option>
+                            <option>Triple</option>
+                        </select>
+                    </div>
                         <div class="d-flex  flex-column w-100 my-3">
                             <label>Enter Price</label>
                             <input type="number" name="price" placeholder="Enter price" min="0" oninput="validity.valid||(value='');"  value="{% if room_update_data %}{{room_update_data.roomPrice}}{% endif %}" required>

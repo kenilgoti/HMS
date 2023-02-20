@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .models import *
 from datetime import datetime
-
+#makemigration- create change  and store in file
+#migrate -Apply pendding changes create by makemigration
 class Lillnes(models.Model):
     lillne_id=models.AutoField(db_column="Illnes_Id",primary_key=True)
     lillne_name=models.CharField(db_column="Illness_name",max_length=255,default=None)

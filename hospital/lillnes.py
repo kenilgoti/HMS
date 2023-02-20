@@ -20,8 +20,8 @@ def addlillnes(request):
             lillne_name = request.POST['lillne']
             data_lillnes = Lillnes(lillne_name=lillne_name)
             data_lillnes.save()
-            messages.success(request, 'Illness Insert Sucessfully')
-            return render(request, 'addlillnes.html')
+            messages.success(request, '')
+            return redirect('view-illnes')
         return render(request, 'addlillnes.html')
     return HttpResponseNotFound('Page Not Found')
 
@@ -33,8 +33,8 @@ def update(request, id):
         if request.method == 'POST':
             lillnes_data.lillne_name = request.POST['lillne']
             lillnes_data.save()
-            messages.success(request, 'Update Sucessfully')
-            return render(request, 'base.html')
+            messages.success(request, '')
+            return redirect("view-illnes")
             # return redirect('update-illnes',id=id)
         return render(request, 'addlillnes.html', {'illness_data': lillnes_data})
     return HttpResponseNotFound('Page Not Found')
@@ -44,6 +44,6 @@ def update(request, id):
 def delete(request, id):
     if request.user.is_superuser == True:
         Lillnes.objects.get(lillne_id=id).delete()
-        messages.success(request, 'Delete Sucessfully')
-        return render(request, 'base.html')
+        messages.success(request, '')
+        return redirect("view-illnes")
     return HttpResponseNotFound('Page Not Found')

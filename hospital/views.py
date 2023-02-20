@@ -20,21 +20,36 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.success(request,"Login Sucess!")
-            if request.user.category == "P":
-                return redirect('pation-Home')
-            elif request.user.category == "S":
-                return redirect('staff-Home')
-            elif request.user.category == "D":
-                return redirect('doctor-Home')
-            else:
-                return render(request,'base.html')
+            # if request.user.category == "P":
+            #     return redirect('pation-Home')
+            # elif request.user.category == "S":
+            #     return redirect('staff-Home')
+            # elif request.user.category == "D":
+            #     return redirect('doctor-Home')
+            # else:
+
+            return render(request,'base.html')
         else:
             messages.error(request,"Login Fail!")
             return render(request,'login.html')
     return render(request,'login.html')
 
+#doctor login
 def doctor_login(request):
-       return render(request,'login_doctor.html')
+    # if request.method == "POST":
+    #     username= request.POST['username']
+    #     password=request.POST['password']
+    #     user=authenticate(username=username,password=password)
+    #     if user is not None:
+    #         login(request,user)
+    #         messages.success("Doctor login successfull")
+    #         return render(request,'Doctor_Home.html')
+    #     else:
+    #         messages.error("Doctor Login Faild")   
+    #         return render(request,'login_doctor.html')
+    return render(request,'login_doctor.html')
+
+ 
    
 def staff_login(request):
        return render(request,'login_staff.html')

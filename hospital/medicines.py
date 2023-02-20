@@ -19,8 +19,8 @@ def add_medicines(request):
                 mediciens_data = Medicines(lillness=illnes_id, medicinesName=medicinename,
                                            medicinesPrice=medicineprice, medicinesQuantity=medicinequantity)
                 mediciens_data.save()
-                messages.success(request, 'Medicines Add Sucessfully')
-                return render(request, 'Medicines/add_medicine.html')
+                messages.success(request, '')
+                return redirect('view-Medicines')
 
             except:
                 messages.error(request, 'Medicines Allrady Added')
@@ -53,7 +53,8 @@ def update(request, id):
                 medicines_data.medicinesPrice = request.POST['medicineprice']
                 medicines_data.medicinesQuantity = request.POST['medicinequantity']
                 medicines_data.save()
-                messages.success(request, 'Update Sucessfully')
+                messages.success(request, '')
+                return redirect('view-Medicines')
             except:
                 messages.error(request, 'Medicines Allrady Added')
             return redirect('view-Medicines')
@@ -69,6 +70,6 @@ def update(request, id):
 def delete(request, id):
     if request.user.is_superuser == True:
         Medicines.objects.get(medicinesId=id).delete()
-        messages.success(request, 'Delete Sucessfully')
-        return render(request, 'base.html')
+        messages.success(request, '')
+        return redirect("view-Medicines")
     return HttpResponseNotFound('Page Not Found')

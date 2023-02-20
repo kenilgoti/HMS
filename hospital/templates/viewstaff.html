@@ -14,10 +14,9 @@
             <th>LastName</th>
             <th>UserName</th>
             <th>Email</th>
-            <th>Category</th>
+            <th>Specialization</th>
             <th>Phone</th>
             <th>Fess</th>
-            <th>Illness</th>
             <th>Update</th>
             <th>Delete</th>
         </thead>
@@ -34,7 +33,7 @@
                 <td>{{i_staff.staff_category}}</td>
                 <td>{{i_staff.phone}}</td>
                 <td>{{i_staff.fess}}</td>
-                <td>{{i_staff.lillness.lillne_name}}</td>
+
                 <td><a class="text-decoration-none text-dark font-weight-bold" href="update/{{i_staff.id}}">{% if i_staff.is_active == False %}<i class="fa fa-unlock-alt p-3" aria-hidden="true"></i>{%else%}<i class="fa fa-pencil p-3" aria-hidden="true"></i>{%endif%}</a></td>
                     <td><a class="text-decoration-none text-dark font-weight-bold" href="delete/{{i_staff.id}}"><i class="fa fa-trash-o p-3" aria-hidden="true"></i></a></td>
                 

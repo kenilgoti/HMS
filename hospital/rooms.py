@@ -9,7 +9,7 @@ import re,os
 def add_Room(request):
     if request.user.is_superuser == True:
         if request.method == "POST":
-            room_type = request.POST['type']
+            room_type = request.POST['room_type']
             room_price = request.POST['price']
             bed_No = request.POST['bedlist']
             try:
@@ -17,10 +17,11 @@ def add_Room(request):
                 room_add_data.save()
                 for i in range(int(bed_No)):
                     bed(bedStatus=False,roomId=room_add_data).save()
-                messages.success(request,'Add Sucessfully')
+                messages.success(request,'')
+                return redirect('View-Rooms')
             except:
                 messages.error(request,'Type is allready axist')
-            return render(request,'base.html')
+            return redirect('View-Rooms')
         return render(request,'add_rooms.html')
     return HttpResponseNotFound('Page Not Found')
 
@@ -41,7 +42,7 @@ def update(request,id):
     if request.user.is_superuser == True:
         room_update_data=room.objects.get(roomId=id)
         if request.method == 'POST':
-            room_type = request.POST['type']
+            room_type = request.POST['room_type']
             room_price = request.POST['price']
             room.objects.filter(roomId=id).update(
                 roomType=room_type,
@@ -52,8 +53,8 @@ def update(request,id):
                 for i in range(int(bed_No)):
                     bed(bedStatus=False,roomId=room_update_data).save()
 
-            messages.success(request,'Update Sucessfully')
-            return render(request,'base.html')
+            messages.success(request,'')
+            return redirect('View-Rooms')
         return render(request,'add_rooms.html',{'room_update_data':room_update_data})
     return HttpResponseNotFound('Page Not Found')
 
@@ -61,7 +62,7 @@ def update(request,id):
 def delete(request,id):
     if request.user.is_superuser == True:
         room.objects.get(roomId=id).delete()
-        messages.success(request,'Delete Sucessfully')
-        return render(request,'base.html')
+        messages.success(request,'')
+        return redirect('View-Rooms')
     return HttpResponseNotFound('Page Not Found')
 

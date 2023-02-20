@@ -7,9 +7,9 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('login/',views.user_login,name='Login'),
      
-    path('doctor_login/',views.doctor_login,name='doctor_login'),
-    path('staff_login/',views.staff_login,name='staff_login'),
-    path('pationt_login/',views.pationt_login,name='pationt_login'),
+    path('doctor_login/',views.doctor_login,name='doctor-login'),
+    path('staff_login/',views.staff_login,name='staff-login'),
+    path('pationt_login/',views.pationt_login,name='pationt-login'),
     path('logout/',views.user_logout,name='logout'),
 
 
@@ -18,7 +18,7 @@ urlpatterns = [
     path('viewdoctor/',doctor.viewdoctor,name='view-doctor'),
     path('viewdoctor/update/<int:id>',doctor.update,name='update_doctor'),
     path('viewdoctor/delete/<int:id>',doctor.delete,name='delete_doctor'),
-    path('doctor-Home/',doctor.Home,name='doctor-Home'),
+    path('doctor-home/',doctor.Home,name='doctor-Home'),
     path('apply-medicines/<int:m_id>/<int:user_id>',doctor.apply_Mediciens,name='apply-medicines'),
     path('view_check_out/',doctor.viewcheckout,name="User-CheckOut"),
 
