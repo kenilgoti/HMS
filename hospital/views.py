@@ -12,7 +12,7 @@ def index(request):
 
 def user_login(request):
     if request.user.is_superuser == True:
-        return render(request,'base.html')
+        return render(request,'admin_home.html')
     elif request.method == "POST":
         usernmae = request.POST['username']
         password = request.POST['password']
@@ -28,10 +28,10 @@ def user_login(request):
             #     return redirect('doctor-Home')
             # else:
 
-            return render(request,'base.html')
+            return render(request,'admin_home.html')
         else:
             messages.error(request,"Login Fail!")
-            return render(request,'login.html')
+            return render(request,'admin_home.html')
     return render(request,'login.html')
 
 #doctor login

@@ -16,34 +16,34 @@
 </head>
 <body>
 
-    
+{% comment %}     
 <div class="menu d-flex justify-content-between align-items-center mb-5">
     <nav class="navbar">
         <ul class="navbar-links">
           <li class="navbar-dropdown">
             <a href="#">Add</a>
             <div class="dropdown">
-                <a href="/addlillnes/">Add Illness</a>
+                <a href="/addlillnes/">Add Lillness</a>
                 <a href="/add_medicine/">Add Medicines</a>
                 <a href="/adddoctor/">Add Doctor</a>
-                <a href="/add-pations/">Add Patient</a>
+                <a href="/add-pations/">Add Pations</a>
                 <a href="/addstaff/">Add Staff</a>
                 <a href="/add_Room/">Add Room & Bed</a>
             </div>
           </li>
-          <br>
-          <li class="navbar-dropdown">
+          <br> {% endcomment %}
+          {% comment %} <li class="navbar-dropdown">
             <a href="#">View</a>
             <div class="dropdown">
-                <a href="/viewlillnes/">View Illness</a>
+                <a href="/viewlillnes/">View Lillness</a>
                 <a href="/view_medicine/">View Medicines</a>
                 <a href="/viewdoctor/">View Doctor</a>
-                <a href="/view-pations/">View Patients</a>
+                <a href="/view-pations/">View Pations</a>
                 <a href="/viewstaff/">View Staff</a>
                 <a href="/view_add_Room/">view Room & Bed</a>
-                <a href="/view_check_out/">view Checkout Details</a>
+                <a href="/view_check_out/">view Checkout Details</a> {% endcomment %}
 
-            </div>
+            {% comment %} </div>
           </li>
         </ul>
     </nav>
@@ -51,7 +51,7 @@
         <h4 class="text-decoration-underline mx-5" >Admin</h4>
         <a class="text-decoration-none text-dark  mx-5" href="/logout/"><i class="fa fa-sign-out" style="font-size: 29px; " aria-hidden="true"></i></a>
     </div>
-</div>
+</div> {% endcomment %}
 
     {% block start %}
     {% endblock %}
