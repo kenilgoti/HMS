@@ -10,6 +10,7 @@ from datetime import datetime
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
+from django.core.mail import send_mail
 
 # amuk jagya a aano use karai ( 'redirect')
 
@@ -44,7 +45,25 @@ def add_pations(request):
                     user_data.lillness = i_illnes
                     user_data.save()
             messages.success(request, '')
-            return redirect('view-pations')
+
+             # Django sending email system
+            if user_data is None :
+                messages.error("add doctor")
+            else :
+            
+                Email= request.POST.get('email')
+                password= request.POST.get('password')
+                username=request.POST.get('username')
+                send_mail(
+                'Hospital email id password use for pations_login',
+                f'your username : {username}  your email id:{Email} password is:{password}',
+                'yashjasoliya1234@gmail.com',
+                [Email],
+                fail_silently=False,
+                 )
+                messages.info(request,"send mail succesfully")
+
+                return render(request,'add_pations.html')
         return render(request, 'add_pations.html', {'data': data_illness})
     return HttpResponseNotFound('Page Not Found')
 

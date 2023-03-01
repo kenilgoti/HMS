@@ -7,6 +7,7 @@ import re
 import os
 import json
 from django.db.models import Q
+from django.core.mail import send_mail
 
 
 @login_required(login_url='/login/')
@@ -20,8 +21,8 @@ def adddoctor(request):
             if password != repassword:
                 messages.error(request, 'Password Not Match?')
                 return render(request, 'adddoctor.html', {'data': data_illness})
-            conform_password = re.search(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$", password)
+            conform_password = re.search("",password)
+                #("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$", password)
             if conform_password is None:
                 messages.error(request, 'Password Not Valid?')
                 return render(request, 'adddoctor.html', {'data': data_illness})
@@ -37,13 +38,30 @@ def adddoctor(request):
 
             user_data.doctor_category = request.POST['doctor_category']
             user_data.is_staff = True
-
             user_data.save()
             messages.success(request, '')
-            return redirect('view-doctor')
+
+    # Django sending email system
+            if user_data is None :
+                messages.success("add doctor")
+            else :
+                
+                Email= request.POST.get('email')
+                password= request.POST.get('password')
+                username=request.POST.get('username')
+                send_mail(
+                'Hospital email id password use for doctor_login',
+                f'your username : {username}  your email id:{Email} password is:{password}',
+                'yashjasoliya1234@gmail.com',
+                [Email],
+                fail_silently=False,
+                )
+                messages.info(request,"send mail succesfully")
+                return render(request,'adddoctor.html')
+        
         return render(request, 'adddoctor.html', {'data': data_illness})
     return HttpResponseNotFound('Page Not Found')
-
+    #######
 
 @login_required(login_url='/login/')
 def viewdoctor(request):

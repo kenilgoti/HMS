@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import *
 
 
+
 def index(request):
     return render(request,'index.html')
 
@@ -14,9 +15,9 @@ def user_login(request):
     if request.user.is_superuser == True:
         return render(request,'admin_home.html')
     elif request.method == "POST":
-        usernmae = request.POST['username']
+        username = request.POST['username']
         password = request.POST['password']
-        user=authenticate(username=usernmae,password=password)
+        user=authenticate(username=username,password=password)
         if user is not None:
             login(request, user)
             messages.success(request,"Login Sucess!")
@@ -36,26 +37,61 @@ def user_login(request):
 
 #doctor login
 def doctor_login(request):
-    # if request.method == "POST":
-    #     username= request.POST['username']
-    #     password=request.POST['password']
-    #     user=authenticate(username=username,password=password)
-    #     if user is not None:
-    #         login(request,user)
-    #         messages.success("Doctor login successfull")
-    #         return render(request,'Doctor_Home.html')
-    #     else:
-    #         messages.error("Doctor Login Faild")   
-    #         return render(request,'login_doctor.html')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            login(request, user)
+            if request.user.category == "D":
+                messages.success(request,"Login Sucess!")
+                return render(request,'Doctor/Doctor_Home.html')
+            else:
+                messages.error(request,"Login fail")  
+                return render(request,'login_doctor.html')
+        else:
+            messages.error(request,"Login Fail!")
+            return render(request,'login_doctor.html')
     return render(request,'login_doctor.html')
 
- 
-   
+    
+ #staff login   
 def staff_login(request):
-       return render(request,'login_staff.html')
-   
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            login(request, user)
+            if request.user.category == "S":
+                messages.success(request,"Login Sucess!")
+                return render(request,'staff_Home.html')
+            else:
+                messages.error(request,"Login fail")  
+                return render(request,'login_staff.html')
+        else:
+            messages.error(request,"Login Fail!")
+            return render(request,'login_staff.html')
+    return render(request,'login_staff.html')
+ 
+ #pationt login  
 def pationt_login(request):
-       return render(request,'login_pationt.html')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            login(request, user)
+            if request.user.category == "P":
+                messages.success(request,"Login Sucess!")
+                return render(request,'pation_home.html')
+            else:
+                messages.error(request,"Login fail")  
+                return render(request,'login_pationt.html')
+        else:
+            messages.error(request,"Login Fail!")
+            return render(request,'login_pationt.html')
+    return render(request,'login_pationt.html')
 
 def user_logout(request):
     logout(request)

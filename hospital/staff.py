@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 import re,os
+from django.core.mail import send_mail
 
 
 @login_required(login_url='/login/')
@@ -35,7 +36,26 @@ def addstaff(request):
 
             user_data.save()
             messages.success(request,'')
-            return redirect("view-staff")
+
+            
+             # Django sending email system
+            if user_data is None :
+                messages.error("add doctor")
+            else :
+            
+                Email= request.POST.get('email')
+                password= request.POST.get('password')
+                username=request.POST.get('username')
+                send_mail(
+                'Hospital email id password use for Staff_login',
+                f'your username{username}  your email id:{Email} password is:{password}',
+                'yashjasoliya1234@gmail.com',
+                [Email],
+                fail_silently=False,
+                )
+                messages.info(request,"send mail succesfully")
+
+                return render(request,'add_pations.html')
         return render(request,'addstaff.html',{'data':data_illness})
     return HttpResponseNotFound('Page Not Found')
 
